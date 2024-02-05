@@ -1,11 +1,11 @@
 # 👩🏻‍💻 코딩테스트 연습
 
-📌 코딩테스트 기록 <br>
-📌 `programmers`, `Baekjoon`, `Softeer`, etc. <br><br>
-
+📌 코딩테스트 기록  
+📌 [programmers](https://programmers.co.kr/), [Baekjoon](https://www.acmicpc.net/), [Softeer](https://softeer.ai/index), etc.
+<br><br>
 
 ### 🗓️ 일자별 기록
-|날짜|확인|설명|언어|
+|날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
-|24.02.05|✅|백준 - 문자열 폭발 / 프로그래머스 - 폰켓몬 |Java / Python|
+|24.02.05|✅|백준 - 문자열 폭발 / 프로그래머스 - 폰켓몬|`Java` / `Python`|
 
