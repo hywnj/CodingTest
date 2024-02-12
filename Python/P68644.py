@@ -1,7 +1,6 @@
 # 두 개 뽑아서 더하기
 # https://school.programmers.co.kr/learn/courses/30/lessons/68644
 
-# 두 개 뽑아서 더하기
 import copy
 def solution(numbers):
     # 기준이 되는 numbers와 더할 next_numbers를 깊은 복사로 초기화
