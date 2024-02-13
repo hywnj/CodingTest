@@ -7,23 +7,24 @@ import java.util.*;
  * https://school.programmers.co.kr/learn/courses/30/lessons/258712
  */
 
-class Friends {
-    public int index; // 친구 이름을 받아와서 배열에 누가 누구에게 선물을 줬는지 기록할 때 각자의 인덱스를 지정
-    public int given; // 선물을 준 개수
-    public int received; // 선물을 받은 개수
-    public int diff; // 선물 지수
-
-    public Friends(int index) {
-        this.index = index;
-        this.given = 0;
-        this.received = 0;
-    }
-
-    public void calDiff() {
-        this.diff = this.given - this.received;
-    }
-}
 public class P258712 {
+    static class Friends {
+        public int index; // 친구 이름을 받아와서 배열에 누가 누구에게 선물을 줬는지 기록할 때 각자의 인덱스를 지정
+        public int given; // 선물을 준 개수
+        public int received; // 선물을 받은 개수
+        public int diff; // 선물 지수
+
+        public Friends(int index) {
+            this.index = index;
+            this.given = 0;
+            this.received = 0;
+        }
+
+        public void calDiff() {
+            this.diff = this.given - this.received;
+        }
+    }
+
     public static void main(String[] args) {
         int answer1 = solution(new String[]{"muzi", "ryan", "frodo", "neo"}, new String[]{"muzi frodo", "muzi frodo", "ryan muzi", "ryan muzi", "ryan muzi", "frodo muzi", "frodo ryan", "neo muzi"});
         int answer2 = solution(new String[]{"joy", "brad", "alessandro", "conan", "david"}, new String[]{"alessandro brad", "alessandro joy", "alessandro conan", "david alessandro", "alessandro david"});
