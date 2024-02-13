@@ -8,16 +8,16 @@ import java.util.Queue;
  * https://school.programmers.co.kr/learn/courses/30/lessons/250137
  */
 
-class Attacks {
-    public int time;
-    public int damage;
-
-    public Attacks(int time, int damage) {
-        this.time = time;
-        this.damage = damage;
-    }
-}
 public class P250137 {
+    static class Attacks {
+        public int time;
+        public int damage;
+
+        public Attacks(int time, int damage) {
+            this.time = time;
+            this.damage = damage;
+        }
+    }
 
     public static void main(String[] args) {
         System.out.println(solution(new int[]{5, 1, 5},30, new int[][]{{2, 10}, {9, 15}, {10, 5}, {11, 5}}));
