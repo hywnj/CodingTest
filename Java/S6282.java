@@ -107,15 +107,15 @@ public class S6282 {
                 }
             }
         }
-}
-
-}
-
-class Pointer {
-    public int x;
-    public int y;
-    public Pointer(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
+
+    static class Pointer {
+        public int x;
+        public int y;
+        public Pointer(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
 }
