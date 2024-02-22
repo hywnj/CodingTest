@@ -17,7 +17,7 @@ public class P42626 {
     public static int solution(int[] scoville, int K) {
         PriorityQueue<Integer> queue = new PriorityQueue<>();
         for (int val : scoville) {
-            queue.add(val);
+            queue.offer(val);
         }
 
         // 스코빌 지수 계산
@@ -34,7 +34,7 @@ public class P42626 {
 
                 // 섞은 음식의 스코빌 지수를 삽입
                 mix = first + (second * 2);
-                queue.add(mix);
+                queue.offer(mix);
                 count++;
             }
         }
