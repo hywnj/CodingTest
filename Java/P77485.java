@@ -1,8 +1,6 @@
 package Java;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 행렬 테두리 회전하기
@@ -10,21 +8,23 @@ import java.util.Map;
  */
 public class P77485 {
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(solution(6,6, new int[][]{{2, 2, 5, 4},{3, 3, 6, 6}, {5, 1, 6, 3}})));
+        System.out.println(Arrays.toString(solution(6, 6, new int[][]{{2, 2, 5, 4}, {3, 3, 6, 6}, {5, 1, 6, 3}}))); // [8, 10, 25]
+        System.out.println(Arrays.toString(solution(3, 3, new int[][]{{1, 1, 2, 2}, {1, 2, 2, 3}, {2, 1, 3, 2}, {2, 2, 3, 3}}))); // [1, 1, 5, 3]
+        System.out.println(Arrays.toString(solution(100, 97, new int[][]{{1, 1, 100, 97}}))); // [1]
     }
 
     /**
      * 배열을 직접 움직이지말고, 움직인 인덱스의 히스토리를 저장해서 계산하자
-     *  - 확인할 인덱스 개수: (x2 - x1 + 1)*2 + (y2 - y1 + 1)*2 - 4
-     *  - (i,j) 최초 기본식 = (i-1)*columns + j
-     *  - 움직일때마다 갱신할 값
-     *      - 오른쪽(0,-1): (i-1)*columns + j-1
-     *      - 아래쪽(-1,0): (i-1-1)*columns + j
-     *      - 왼쪽(0,1): (i-1)*columns + j+1
-     *      - 위쪽(1,0): (i-1+1)*columns + j
+     * - 확인할 인덱스 개수: (x2 - x1 + 1)*2 + (y2 - y1 + 1)*2 - 4
+     * - (i,j) 최초 기본식 = (i-1)*columns + j
+     * - 움직일때마다 갱신할 값
+     * - 오른쪽(0,-1): (i-1)*columns + j-1
+     * - 아래쪽(-1,0): (i-1-1)*columns + j
+     * - 왼쪽(0,1): (i-1)*columns + j+1
+     * - 위쪽(1,0): (i-1+1)*columns + j
      */
     public static int[] solution(int rows, int columns, int[][] queries) {
-        Map<Pointer, Pointer> originalMap = new HashMap<>();    // 회전 전 행렬 정보
+        Map<Pointer, Pointer> originalMap = new HashMap<>(); // 회전 전 행렬 정보
 
         int[] answer = new int[queries.length];
         int index = 0; // answer 배열에 값 추가하기 위한 인덱스
@@ -57,16 +57,16 @@ public class P77485 {
                 // 회전 순서는 시계 방향이므로 오른쪽 -> 아래쪽 -> 왼쪽 -> 위쪽
                 if (nowX == x1 && nowY < y2) { // 1. 오른쪽
                     nowY++;
-                    updatedMap.put(nowPointer, new Pointer(movedInfo.x, movedInfo.y - 1));
+                    updatedMap.put(new Pointer(nowX, nowY), new Pointer(movedInfo.x, movedInfo.y - 1));
                 } else if (nowY == y2 && nowX < x2) { // 2. 아래쪽
                     nowX++;
-                    updatedMap.put(nowPointer, new Pointer(movedInfo.x - 1, movedInfo.y));
+                    updatedMap.put(new Pointer(nowX, nowY), new Pointer(movedInfo.x - 1, movedInfo.y));
                 } else if (nowX == x2 && nowY > y1) { // 3. 왼쪽
                     nowY--;
-                    updatedMap.put(nowPointer, new Pointer(movedInfo.x, movedInfo.y + 1));
+                    updatedMap.put(new Pointer(nowX, nowY), new Pointer(movedInfo.x, movedInfo.y + 1));
                 } else if (nowY == y1 && nowX > x1) { // 4. 위쪽
                     nowX--;
-                    updatedMap.put(nowPointer, new Pointer(movedInfo.x + 1, movedInfo.y));
+                    updatedMap.put(new Pointer(nowX, nowY), new Pointer(movedInfo.x + 1, movedInfo.y));
                 }
 
 
@@ -87,9 +87,23 @@ public class P77485 {
     public static class Pointer {
         public int x;
         public int y;
+
         public Pointer(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Pointer other = (Pointer) o;
+            return other.x == x && other.y == y;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
         }
 
         public Pointer() {
