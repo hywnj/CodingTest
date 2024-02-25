@@ -44,7 +44,7 @@ public class P77485 {
             for (int i = 0; i < totalMovedNumber; i++) {
                 Pointer nowPointer = new Pointer(nowX, nowY); // 현재 포인터
                 Pointer movedInfo = new Pointer(); // 회전 정보 초기화
-                // @TODO: 체크 안되므로 확인
+
                 if (originalMap.containsKey(nowPointer)) { // 이전에 회전한 적이 있다면, 회전 정보 가져오기
                     movedInfo = originalMap.get(nowPointer);
                 }
