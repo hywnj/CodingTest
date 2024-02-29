@@ -13,12 +13,6 @@ public class P92341 {
         System.out.println(Arrays.toString(solution(new int[]{1, 461, 1, 10}, new String[]{"00:00 1234 IN"}))); // [14841]
     }
 
-    /**
-     * 1 ≤ records의 길이 ≤ 1,000
-     * "시각 차량번호 내역"
-     * IN 또는 OUT
-     * 시각을 기준으로 오름차순으로 정렬
-     */
     public static int[] solution(int[] fees, String[] records) {
         /**
          * 1. records 세팅
