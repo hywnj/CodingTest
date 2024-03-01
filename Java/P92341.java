@@ -130,9 +130,7 @@ public class P92341 {
 
         @Override
         public int compareTo(ParkingInfo o) {
-            int intCarNum = Integer.parseInt(this.carNum);
-            int intOtherCarNum = Integer.parseInt(o.carNum);
-            return intCarNum - intOtherCarNum;
+            return this.carNum.compareTo(o.carNum);
         }
     }
 }
