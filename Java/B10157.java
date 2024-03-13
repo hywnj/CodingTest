@@ -1,15 +1,11 @@
 package Java;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
 /**
  * 자리배정
  * https://www.acmicpc.net/problem/10157
  */
 public class B10157 {
-
     /**
      * 가로로 C개, 세로로 R개 좌석 (5 ≤ C, R ≤ 1,000)
      * 어떤 관객의 대기번호 K (1 ≤ K ≤ 100,000,000)
