@@ -29,60 +29,38 @@ public class B10157 {
             return;
         }
 
-        // 방향 순서 Map - Key: 현재 방향, Value: 다음 방향
-        Map<Character, Character> directionMap = new HashMap<>();
-        directionMap.put('u', 'r');
-        directionMap.put('r', 'd');
-        directionMap.put('d', 'l');
-        directionMap.put('l', 'u');
-        // 방향에 따른 dx, dy 인덱스
-        Map<Character, Integer> directionIdx = new HashMap<>();
-        directionIdx.put('u', 0);
-        directionIdx.put('r', 1);
-        directionIdx.put('d', 2);
-        directionIdx.put('l', 3);
-        // {u(위쪽), r(오른쪽), d(야래쪽), l(왼쪽)}
+        // {위쪽, 오른쪽, 야래쪽, 왼쪽}
         int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, 1, 0, -1};
 
         // (1,1)좌석은 (세로 끝 인덱스, 0)에 매칭
         int x = r-1;
         int y = 0;
-        int hallX = 1;
-        int hallY = 1;
         // cnt 증가시키면서 k와 같아질때까지 순회하여 좌석 출력
         int cnt = 1;
-        char dir = 'u'; // 맨 처음 방향(위쪽)
+        int dir = 0; // 방향(처음엔 위쪽)
         boolean[][] hall = new boolean[r][c];
         hall[x][y] = true;
         // cnt == k될때까지 반복
         while (true) {
             if (cnt == k) break;
 
-            x += dx[directionIdx.get(dir)];
-            y += dy[directionIdx.get(dir)];
+            hall[x][y] = true;
+
+            int nx = x + dx[dir];
+            int ny = y + dy[dir];
 
             // 더이상 갈 곳이 없을때 방향 전환
-            if ((x >= r || x < 0) || (y >= c || y < 0) || hall[x][y]) {
-                // 위에서 더해준 값 다시 원복
-                x -= dx[directionIdx.get(dir)];
-                y -= dy[directionIdx.get(dir)];
+            if ((nx >= r || nx < 0) || (ny >= c || ny < 0) || hall[nx][ny]) {
                 // 다음 방향으로 변경
-                dir = directionMap.get(dir);
+                dir = (dir+1) % 4;
                 continue;
             }
-
-            // 위의 경우가 아니라면 방문
-            hall[x][y] = true;
-            // (hallX, hallY)에서
-            //      - hallX는 배열 인덱스 (i,j)로 생각할때 j+1.
-            //      - hallY는 배열 인덱스 (i,j)에서 i와 매칭할 수 있는데, 방향이 반대
-            //        - 따라서 위, 아래로 이동하여 방문시에 위로 가면 +, 아래로 가면 -한게 현재 좌석 Y 위치
-            hallX = y + 1;
-            if (dir == 'u') hallY ++;
-            else if (dir == 'd') hallY--;
             cnt++;
+            x = nx;
+            y = ny;
         }
-        System.out.println(hallX+" "+hallY);
+        // 좌석 x,y는 배열 i,j로 매칭하면, j+1, R-i
+        System.out.println((y + 1) + " " + (r - x));
     }
 }
