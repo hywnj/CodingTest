@@ -1,0 +1,9 @@
+-- 부서별 평균 연봉 조회하기
+-- https://school.programmers.co.kr/learn/courses/30/lessons/284529
+SELECT HE.DEPT_ID
+     , HD.DEPT_NAME_EN
+     , ROUND(AVG(HE.SAL)) AS AVG_SAL
+FROM HR_DEPARTMENT AS HD, HR_EMPLOYEES AS HE
+WHERE HD.DEPT_ID = HE.DEPT_ID
+GROUP BY HD.DEPT_ID
+ORDER BY AVG_SAL DESC;
