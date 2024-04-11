@@ -163,19 +163,4 @@ public class B16926 {
 
         return new int[]{nx, ny};
     }
-
-    public static int calDirection(int si, int sj, int minIdx, int maxN, int maxM) {
-        /**
-         * 아래: 가장 왼쪽 = (x < maxN ,minIdx)
-         * 오른쪽: 가장 아래쪽 = (maxN, y < maxM)
-         * 위쪽: 가장 오른쪽 = (x > minIdx, maxM)
-         * 왼쪽: 가장 위쪽 = (minIdx, y > minIdx)
-         */
-        if (si < maxN && sj == minIdx) return 0;
-        else if (si == maxN && sj < maxM) return 1;
-        else if (si > minIdx && sj == maxM) return 2;
-        else if (si == minIdx && sj > minIdx) return 3;
-
-        return 0;
-    }
 }
