@@ -20,8 +20,8 @@ public class P150367 {
 
             // 높이가 n인 포화 이진트리 전체 노드 수 = 2^n - 1
             int decimalLen = decimal.length();
-            int depth = 1;
-            int nodeCnt = 0;
+            int depth = 1; // 트리 깊이
+            int nodeCnt = 0; // 실제 트리 깊이 매칭되는 노드개수
             while (nodeCnt < decimalLen) {
                 nodeCnt = (int) Math.pow(2, depth++) - 1;
             }
