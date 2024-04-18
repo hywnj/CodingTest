@@ -33,31 +33,76 @@ public class B2263 {
      */
     // String vs StringBuilder 중 성능이 빠른 StringBuilder로 선언
     static StringBuilder pre = new StringBuilder();
+    // contains로 value 찾기 위해 List 자료구조 사용
+    // static List<Integer> in = new ArrayList<>();
+    // static List<Integer> post = new ArrayList<>();
+    static int[] in; // 중위 순회 값의 인덱스를 value로 저장
+    static int[] post;
+
     static int n;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
-
+        in = new int[n + 1];
+        post = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        // contains로 value 찾기 위해 List 자료구조 사용
-        List<Integer> in = new ArrayList<>();
+
         for (int i=0; i<n; i++) {
-            in.add(Integer.parseInt(st.nextToken()));
+            // 중위 순회 배열에서는 root의 인덱스를 찾아야되기 때문에, 각 값의 인덱스를 value로 저장
+            in[Integer.parseInt(st.nextToken())] = i;
+            // in.add(Integer.parseInt(st.nextToken()));
         }
 
         st = new StringTokenizer(br.readLine(), " ");
-        List<Integer> post = new ArrayList<>();
         for (int i=0; i<n; i++) {
-            post.add(Integer.parseInt(st.nextToken()));
+            post[i] = Integer.parseInt(st.nextToken());
+            // post.add(Integer.parseInt(st.nextToken()));
         }
         // 전위 순회
-        makePreOrder(in, post);
+        // makePreOrder(in, post);
+        makePreOrderFromIdx(0,n-1,0,n-1);
         // 결과 출력
         System.out.println(pre);
     }
 
     /**
-     * 전위 순회
+     * 인덱스로 트리 전위 순회
+     * [inorder 배열]
+     *  - left sub tree: in 시작 인덱스 ~ (root 인덱스 - 1) (root 인덱스 왼쪽 부분)
+     *  - right sub tree: (root 인덱스 + 1) ~ in 배열 끝 인덱스 (root 인덱스 오른쪽 부분)
+     * [postorder 배열]
+     *  - left sub tree: post 시작 인덱스 ~ (post 끝 인덱스 - right Node 개수 - 1) (인덱스 계산을 위해 -1)
+     *  - right sub tree: (post 끝 인덱스 - right node 개수) ~ post 끝 인덱스 - 1 (마지막 인덱스는 root)
+     * @param in_start : inorder 배열 시작 인덱스
+     * @param in_end : inorder 배열 끝 인덱스
+     * @param post_start : postorder 배열 시작 인덱스
+     * @param post_end : postorder 배열 끝 인덱스
+     */
+    public static void makePreOrderFromIdx(int in_start, int in_end, int post_start, int post_end) {
+        if (in_start > in_end || post_start > post_end) return;
+
+        int root = post[post_end];
+        // int root = post.get(post_end);
+        pre.append(root+ " "); // preorder에 root add
+
+        // inorder의 root index 기준으로 left, right 나뉨
+        int rootIdx = in[root];
+        /**
+         * List의 indexOf 함수는 원하는 값을 찾을때까지 배열을 순회하기 때문에, 그 시간이 추가로 걸림
+         * 성능 최적화를 위해 inorder 배열 저장 방식을 수정함.
+         */
+        // int rootIdx = in.indexOf(root);
+        int rightNodeCnt = in_end - rootIdx;
+
+        // left subtree
+        makePreOrderFromIdx(in_start, rootIdx - 1, post_start, post_end - rightNodeCnt - 1);
+
+        // right subtree
+        makePreOrderFromIdx(rootIdx + 1, in_end, post_end - rightNodeCnt, post_end - 1);
+    }
+
+    /**
+     * 배열을 매개변수로 한 전위 순회
      * @param in
      *  [inorder 배열 기준]
      *      - 왼쪽 트리: 시작 인덱스 ~ rootIdx(in의 root 노드 인덱스) - 1
@@ -84,9 +129,9 @@ public class B2263 {
 
         // inorder의 root index 기준으로 left, right 나뉨
         int rootIdx = in.indexOf(root);
-        // left sub tree
+        // left subtree
         makePreOrder(in.subList(0, rootIdx), post.subList(0, rootIdx));
-        // right sub tree
+        // right subtree
         makePreOrder(in.subList(rootIdx + 1, in.size()), post.subList(rootIdx, in.size() - 1));
     }
 }
