@@ -7,6 +7,7 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
+|24.06.26|✅|[프로그래머스 - 인사고과](https://coding-vvon.tistory.com/entry/coding-test-13)|`Java`|
 |24.06.11|✅|[프로그래머스 - 다단계 칫솔 판매](https://coding-vvon.tistory.com/entry/coding-test-12)|`Java`|
 |24.05.23|✅|프로그래머스 - 이중우선순위큐|`Java`|
 |24.05.16|🔥|프로그래머스 - 기둥과 보 설치|`Java`|
