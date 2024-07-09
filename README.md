@@ -7,7 +7,8 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
-|24.07.02|✅|[프로그래머스 - 평범한 배낭](https://coding-vvon.tistory.com/entry/coding-test-15)|`Java`|
+|24.07.09|✅|[백준 - 탑 보기](https://coding-vvon.tistory.com/entry/coding-test-16)|`Java`|
+|24.07.02|✅|[백준 - 평범한 배낭](https://coding-vvon.tistory.com/entry/coding-test-15)|`Java`|
 |24.06.28|✅|[프로그래머스 - 기둥과 보 설치](https://coding-vvon.tistory.com/entry/coding-test-14)|`Java`|
 |24.06.26|✅|[프로그래머스 - 인사고과](https://coding-vvon.tistory.com/entry/coding-test-13)|`Java`|
 |24.06.11|✅|[프로그래머스 - 다단계 칫솔 판매](https://coding-vvon.tistory.com/entry/coding-test-12)|`Java`|
