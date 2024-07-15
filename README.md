@@ -7,6 +7,7 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
+|24.07.12|✅|[백준 - 회전 초밥](https://coding-vvon.tistory.com/entry/coding-test-18)|`Java`|
 |24.07.10|✅|[백준 - 전화번호 목록](https://coding-vvon.tistory.com/entry/coding-test-17)|`Java`|
 |24.07.09|✅|[백준 - 탑 보기](https://coding-vvon.tistory.com/entry/coding-test-16)|`Java`|
 |24.07.02|✅|[백준 - 평범한 배낭](https://coding-vvon.tistory.com/entry/coding-test-15)|`Java`|
