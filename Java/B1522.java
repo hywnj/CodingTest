@@ -37,6 +37,7 @@ public class B1522 {
             if (str.charAt(i % len) == 'b') cnt--;
             if (str.charAt(range++ % len) == 'b') cnt++;
         }
+
         System.out.println(min);
     }
 }
