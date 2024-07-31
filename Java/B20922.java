@@ -32,7 +32,7 @@ public class B20922 {
                 // while (sequence[start] != sequence[end]) { // 1개가 늘어서 연속 k개 초과했으므로, start가 end 숫자랑 같아질때까지 이동시키기
                 while (cnt[sequence[end]] + 1 > k) { // 현재 숫자가 k개 이하가 될 때까지 start 이동
                     cnt[sequence[start]]--; // start 숫자 제외
-                    answer--; // 순열 길이 -1
+                    answer--; // 수열 길이 -1
                     start++; // start pointer +1
                 }
             } else { // 초과 하지 않는 경우, 1) 현재 숫자 카운팅 & 2) 숫자 연속 길이 증가
