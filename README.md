@@ -7,6 +7,7 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
+|24.07.31|✅|[백준 - 1, 2, 3 더하기 4](https://coding-vvon.tistory.com/entry/coding-test-22)|`Java`|
 |24.07.29|✅|[백준 - 겹치는 건 싫어](https://coding-vvon.tistory.com/entry/coding-test-21)|`Java`|
 |24.07.19|✅|[백준 - 지름길](https://coding-vvon.tistory.com/entry/coding-test-20)|`Java`|
 |24.07.18|✅|[백준 - 볼 모으기](https://coding-vvon.tistory.com/entry/coding-test-19)|`Java`|
