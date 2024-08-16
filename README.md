@@ -7,6 +7,7 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
+|24.08.10|✅|[프로그래머스 - [PCCP 기출문제] 2번 / 석유 시추](https://coding-vvon.tistory.com/entry/coding-test-24)|`Java`|
 |24.08.07|✅|[백준 - 탑](https://coding-vvon.tistory.com/entry/coding-test-23)|`Java`|
 |24.08.06|✅|백준 - 블랙잭|`Java`|
 |24.07.31|✅|[백준 - 1, 2, 3 더하기 4](https://coding-vvon.tistory.com/entry/coding-test-22)|`Java`|
