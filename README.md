@@ -12,6 +12,7 @@
 |24.08.07|✅|[백준 - 탑](https://coding-vvon.tistory.com/entry/coding-test-23)|`Java`|
 |24.08.06|✅|백준 - 블랙잭|`Java`|
 |24.07.31|✅|[백준 - 1, 2, 3 더하기 4](https://coding-vvon.tistory.com/entry/coding-test-22)|`Java`|
+|24.07.30|✅|백준 - 별 찍기 - 5|`Java`|
 |24.07.29|✅|[백준 - 겹치는 건 싫어](https://coding-vvon.tistory.com/entry/coding-test-21)|`Java`|
 |24.07.19|✅|[백준 - 지름길](https://coding-vvon.tistory.com/entry/coding-test-20)|`Java`|
 |24.07.18|✅|[백준 - 볼 모으기](https://coding-vvon.tistory.com/entry/coding-test-19)|`Java`|
