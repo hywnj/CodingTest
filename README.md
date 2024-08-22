@@ -7,7 +7,7 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
-|24.08.22|✅|백준 - 인구 이동|`Java`|
+|24.08.22|✅|[백준 - 인구 이동](https://coding-vvon.tistory.com/entry/coding-test-26)|`Java`|
 |24.08.16|✅|[프로그래머스 - 리코쳇 로봇](https://coding-vvon.tistory.com/entry/coding-test-25)|`Java`|
 |24.08.10|✅|[프로그래머스 - (PCCP 기출문제) 2번 / 석유 시추](https://coding-vvon.tistory.com/entry/coding-test-24)|`Java`|
 |24.08.07|✅|[백준 - 탑](https://coding-vvon.tistory.com/entry/coding-test-23)|`Java`|
