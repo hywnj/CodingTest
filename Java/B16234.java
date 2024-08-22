@@ -42,7 +42,7 @@ public class B16234 {
         int[] dy = {1,0,-1,0};
         boolean[][] visited = new boolean[n][n];
         Queue<Pointer> q = new LinkedList<>();
-        boolean availableFlag = false;
+        boolean availableFlag = false; // 인구 이동 성공 여부
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
