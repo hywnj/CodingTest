@@ -12,7 +12,6 @@ import java.util.*;
 public class B16234 {
     static int[][] earth;
     static int n, l, r;
-    static int day = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
@@ -30,6 +29,7 @@ public class B16234 {
         }
 
         // 인구 이동
+        int day = 0;
         while (true) {
             if (!movePeople()) break; // 인구 이동이 실패한 경우 반복문 종료
             day++; // 인구 이동 성공한 경우 일 수 증가
@@ -51,13 +51,13 @@ public class B16234 {
                     visited[i][j] = true;
 
                     // BFS Queue에 저장되어 아래 while문을 타면 하나의 연합국으로 계산
-                    List<Pointer> country = new ArrayList<>(); // 하나의 연합국 정보를 담을 리스트 (연합국은 한 번의 순회에 여러개 나올 수 있음)
+                    List<Pointer> pointers = new ArrayList<>(); // 하나의 연합국 정보를 담을 Pointer 리스트
                     int sum = earth[i][j]; // 연합의 인구수
                     int cnt = 1; // 연합을 이루고 있는 칸의 개수
 
                     while (!q.isEmpty()) {
                         Pointer nowPointer = q.poll();
-                        country.add(nowPointer);
+                        pointers.add(nowPointer);
 
                         for (int k = 0; k < 4; k++) { // 4방향 탐색
                             int nx = nowPointer.x + dx[k];
@@ -70,22 +70,22 @@ public class B16234 {
                                         visited[nx][ny] = true; // 인접 땅 방문 표시
 
                                         // 연합국 처리
-                                        sum += earth[nx][ny];
-                                        cnt++;
+                                        sum += earth[nx][ny]; // 연합국 인구 수 누적
+                                        cnt++; // 연합국 개수 증가
 
                                         q.add(new Pointer(nx, ny));
-                                        country.add(new Pointer(nx, ny)); // 현재 연합국에 추가
+                                        pointers.add(new Pointer(nx, ny)); // 현재 연합국에 추가
                                     }
                                 }
                             }
                         }
                     }
                     // 인구 이동을 할 수 없는 경우, 다음 땅에서 인접국 확인
-                    if (country.size() == 1) continue;
+                    if (pointers.size() == 1) continue;
 
                     // 현 연합국 인구 이동
                     int people = sum / cnt; // 연합에 분배될 인구 수
-                    for (Pointer p : country) {
+                    for (Pointer p : pointers) {
                         earth[p.x][p.y] = people;
                     }
                     availableFlag = true; // 인구 이동이 한번이라도 있다면 true 반환
