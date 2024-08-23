@@ -13,16 +13,6 @@ public class P77485 {
         System.out.println(Arrays.toString(solution(100, 97, new int[][]{{1, 1, 100, 97}}))); // [1]
     }
 
-    /**
-     * 배열을 직접 움직이지말고, 움직인 인덱스의 히스토리를 저장해서 계산하자
-     * - 확인할 인덱스 개수: (x2 - x1 + 1)*2 + (y2 - y1 + 1)*2 - 4
-     * - (i,j) 최초 기본식 = (i-1)*columns + j
-     * - 움직일때마다 갱신할 값
-     * - 오른쪽(0,-1): (i-1)*columns + j-1
-     * - 아래쪽(-1,0): (i-1-1)*columns + j
-     * - 왼쪽(0,1): (i-1)*columns + j+1
-     * - 위쪽(1,0): (i-1+1)*columns + j
-     */
     public static int[] solution(int rows, int columns, int[][] queries) {
         Map<Pointer, Pointer> originalMap = new HashMap<>(); // 회전 전 행렬 정보
 
@@ -38,7 +28,7 @@ public class P77485 {
 
             int totalMovedNumber = (x2 - x1 + 1) * 2 + (y2 - y1 + 1) * 2 - 4; // 확일할 개수 = 회전하는 개수
 
-            int min = 1100;
+            int min = 10001; // rows, columns는 최대 100
             int nowX = x1;
             int nowY = y1;
             for (int i = 0; i < totalMovedNumber; i++) {
