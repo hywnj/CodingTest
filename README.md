@@ -7,7 +7,7 @@
 ### 🗓️ 일자별 기록
 |날짜|확인|문제|언어|
 |:----:|:----:|:----:|:----:|
-|24.08.22|✅|백준 - 인구 이동|`Java`|
+|24.08.22|✅|[백준 - 인구 이동](https://coding-vvon.tistory.com/entry/coding-test-26)|`Java`|
 |24.08.16|✅|[프로그래머스 - 리코쳇 로봇](https://coding-vvon.tistory.com/entry/coding-test-25)|`Java`|
 |24.08.10|✅|[프로그래머스 - (PCCP 기출문제) 2번 / 석유 시추](https://coding-vvon.tistory.com/entry/coding-test-24)|`Java`|
 |24.08.07|✅|[백준 - 탑](https://coding-vvon.tistory.com/entry/coding-test-23)|`Java`|
@@ -54,7 +54,7 @@
 |24.02.27|✅|[프로그래머스 - 연속된 부분 수열의 합](https://coding-vvon.tistory.com/entry/coding-test-6)|`Java`|
 |24.02.26|✅|[프로그래머스 - 카펫](https://coding-vvon.tistory.com/entry/coding-test-4)|`Java`|
 |24.02.25|✅|프로그래머스 - 의상|`Java`|
-|24.02.24|🔥|프로그래머스 - 행렬 테두리 회전하기|`Java`|
+|24.02.24|✅|프로그래머스 - 행렬 테두리 회전하기|`Java`|
 |24.02.23|✅|[프로그래머스 - 올바른 괄호](https://coding-vvon.tistory.com/entry/coding-test-5)|`Java`|
 |24.02.22|✅|[프로그래머스 - 더 맵게](https://coding-vvon.tistory.com/entry/coding-test-3)|`Java`|
 |24.02.21|✅|프로그래머스 - 햄버거 만들기|`Python`|
