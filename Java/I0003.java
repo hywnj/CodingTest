@@ -4,78 +4,58 @@ package Java;
  * 시뮬레이션 & 구현 : 잃어버린 강아지
  */
 public class I0003 {
-    static int len = 10; // 지도 크기는 10*10 고정
-    static int answer;
     public int solution(int[][] board){
-        answer = 0; // 총 걸린 시간 초기화
+        int len = board.length; // 지도 크기는 10*10 고정
+
         // 현수, 강아지 정보 저장
-        Point hyun = null, dog = null;
+        int x1 = 0, x2 = 0, y1 = 0, y2 = 0;
         for (int i = 0; i < len; i++) {
             for (int j = 0; j < len; j++) {
                 if (board[i][j] == 2) {
-                    hyun = new Point(i, j);
+                    x1 = i;
+                    y1 = j;
                 } else if (board[i][j] == 3) {
-                    dog = new Point(i, j);
+                    x2 = i;
+                    y2 = j;
                 }
-
-                if (hyun != null && dog != null) break;
             }
         }
 
-        // 강아지 찾기
-        while (!findDog(hyun, dog)) {
-            moveOrRotate(hyun, board); // 현수 이동|회전
-            answer++;
-            if (findDog(hyun, dog)) break; // 강아지를 찾았으면 종료
-
-            moveOrRotate(dog, board); // 강아지 이동|회전
-            if (findDog(hyun, dog)) break; // 강아지를 찾았으면 종료
-
-            if (answer >= 10000) { // 10,000분 후에도 찾을 수 없으면 0 반환
-                answer = 0;
-                break;
-            }
-        }
-
-        return answer;
-    }
-
-    public void moveOrRotate(Point point, int[][] board) {
-        int[] dx = {-1, 0, 1, 0}; // 순서: 위 > 오른쪽 > 아래 > 왼쪽
+        int[] dx = {-1, 0, 1, 0};
         int[] dy = {0, 1, 0, -1};
 
-        int nx = point.x + dx[point.direction];
-        int ny = point.y + dy[point.direction];
+        int d1 = 0, d2 = 0, time = 0;
+        while (time < 10000) {
+            time++;
+            int nx1 = x1 + dx[d1]; // 현수
+            int ny1 = y1 + dy[d1];
+            int nx2 = x2 + dx[d2]; // 강아지
+            int ny2 = y2 + dy[d2];
 
-        if (nx >= 0 && nx < len && ny >= 0 && ny < len) {
-            if (board[nx][ny] == 1) point.changeDirection(); // 나무 마주쳤을때 회전
-            else point.changePoint(nx, ny); // 이동
-        } else { // 범위를 벗어나는 경우, 회전
-            point.changeDirection(); // 지도의 끝일 때 회전
-        }
-    }
+            boolean flag1 = true, flag2 = true;
+            // 지도 끝이거나 나무를 마주치면 회전
+            if (nx1 < 0 || nx1 >= len || ny1 < 0 || ny1 >= len || board[nx1][ny1] == 1) {
+                d1 = (d1 + 1) % 4;
+                flag1 = false;
+            }
+            if (nx2 < 0 || nx2 >= len || ny2 < 0 || ny2 >= len || board[nx2][ny2] == 1) {
+                d2 = (d2 + 1) % 4;
+                flag2 = false;
+            }
 
-    public boolean findDog(Point hyun, Point dog) {
-        if (hyun.x == dog.x && hyun.y == dog.y) return true;
-        else return false;
-    }
+            // 한칸 이동
+            if (flag1) {
+                x1 = nx1;
+                y1 = ny1;
+            }
+            if (flag2) {
+                x2 = nx2;
+                y2 = ny2;
+            }
 
-    public class Point{
-        int x;
-        int y;
-        int direction = 0; // 먼저 북쪽으로 출발
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
+            if (x1 == x2 && y1 == y2) break; // 강아지를 만나면 완료
         }
-        public void changePoint(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public void changeDirection() {
-            this.direction = (this.direction + 1) % 4;
-        }
+        return time;
     }
 
     public static void main(String[] args){
