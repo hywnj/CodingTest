@@ -9,83 +9,69 @@ import java.util.*;
 public class P118669 {
     public int[] solution(int n, int[][] paths, int[] gates, int[] summits) {
         /**
-         * 각 경로별 산봉우리 정보 + intensity 정보
-         * 산봉우리는 1번만
-         * 출입구 기준 gates -> summits 도달하는 비용 계산해서 저장
+         * n은 최대 50,000이므로, 중복 for문은 시간초과 위험
+         *  => 다익스트라 알고리즘을 사용해 출입구(gates)에서 시작하여 모든 산봉우리까지 가는 최적 경로를 한 번에 구하기
          */
         // 노드 연결 그래프 세팅
         ArrayList<Node>[] graph = new ArrayList[n + 1]; // 노드 연결 정보
         for (int i = 1; i <= n; i++) graph[i] = new ArrayList<>(); // 초기화
-        // 한 번만 지나야 하는 출입구, 산봉우리 표시
-        boolean[] once = new boolean[n + 1];
-        for (int gate: gates) once[gate] = true;
-        for (int summit: summits) once[summit] = true;
-
         for (int[] path : paths) {
             // 양방향 그래프
             graph[path[0]].add(new Node(path[1], path[2]));
             graph[path[1]].add(new Node(path[0], path[2]));
         }
-        List<Course> answers = new ArrayList<>(); // 정답 후보 배열
+        // 산봉우리
+        Set<Integer> summitSet = new HashSet<>();
+        for (int summit: summits) summitSet.add(summit);
+
+        // 다익스트라 탐색
+        int[] intensity = new int[n + 1]; // 해당 노드까지의 최단 intensity
+        Arrays.fill(intensity, 1_000_000_000);
+        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o.intensity)); // intensity 작은순
+        // 출발점 PQ에 추가
         for (int gate : gates) {
-            // 모든 출입구에서 모든 산봉우리까지의 최대 휴식 시간을 구하기
-            for (int summit : summits) {
-                boolean[] visited = new boolean[n + 1];
-                Queue<Course> q = new LinkedList<>();
-                q.offer(new Course(gate, 0));
-
-                while (!q.isEmpty()) {
-                    Course course = q.poll();
-                    // 산봉우리 도달시 정답 배열에 추가
-                    if (course.num == summit) {
-                        answers.add(new Course(summit, course.intensity));
-                        continue;
-                    }
-                    // 방문 여부 체크 (양방향이 아니여도, 출입구부터 해당 산봉우리까지의 모든 단방향 루트를 구하면 모든 intensity를 구할 수 있음)
-                    if (visited[course.num]) continue;
-                    visited[course.num] = true;
-
-
-                    // 현재 방문한 노드의 연결 노드
-                    for (Node next : graph[course.num]) {
-                        // 한번만 지나야하는 경로로 간 경우 제외
-                        if (next.num != summit && once[next.num]) continue;
-                        int max = Math.max(next.time, course.intensity); // 현재 intensity와 다음 노드 intensity 중 최댓값
-                        q.offer(new Course(next.num, max));
-                    }
-
-                }
-            }
-
-
+            pq.offer(new Node(gate, 0));
+            intensity[gate] = 0;
         }
 
-        answers.sort(Course::compareTo);
-        return new int[]{answers.get(0).num, answers.get(0).intensity};
+        while (!pq.isEmpty()) {
+            Node curr = pq.poll();
+            // 현재 노드의 intensity가 기존 누적 저장된 intensity보다 크면 continue
+            if (intensity[curr.num] < curr.intensity) continue;
+
+            // 현재 노드의 연결 노드 탐색
+            for (Node next : graph[curr.num]) {
+                int max = Math.max(curr.intensity, next.intensity);
+                // 더 작은 intensity 경로가 있을 때만 업데이트
+                if (intensity[next.num] > max) {
+                    intensity[next.num] = max;
+                    // 다음 노드가 산봉우리가 아닌 경우에만 pq에 추가
+                    if (!summitSet.contains(next.num)) pq.offer(new Node(next.num, max));
+                }
+            }
+        }
+
+        // 산봉우리 번호가 작은순
+        Arrays.sort(summits);
+        int min = 1_000_000_000;
+        int num = 0;
+        for (int summit : summits) {
+            if (intensity[summit] < min) {
+                min = intensity[summit];
+                num = summit;
+            }
+        }
+
+        return new int[]{num, min};
     }
 
     public class Node {
         int num;
-        int time;
-
-        public Node(int num, int time) {
-            this.num = num;
-            this.time = time;
-        }
-    }
-    public class Course implements Comparable<Course> {
-        int num;
         int intensity;
 
-        public Course(int num, int intensity) {
+        public Node(int num, int intensity) {
             this.num = num;
             this.intensity = intensity;
-        }
-
-        @Override
-        public int compareTo(Course o) {
-            if (this.intensity == o.intensity) return this.num - o.num; // 같다면 노드 번호가 작은 순
-            else return this.intensity - o.intensity; // intensity가 작은 순
         }
     }
 
